@@ -1,0 +1,38 @@
+﻿@model Person
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+@if (Model != null)
+{
+    <div class="left-menu-wrapper">
+        <ul class="left-menu list-group">
+            <li class="list-group-item">
+                <a asp-action="Edit" asp-route-id="@Model.ID">Edit my page</a>
+            </li>
+            <li class="list-group-item">
+                <a asp-action="FriendsList">My friends</a>
+            </li>
+            <li class="list-group-item">
+                <a asp-controller="Messages" asp-action="IncomingMessages">Messages</a>
+            </li>
+        </ul>
+        <div class="left-menu-content">
+            <h2>@Model.Name</h2>
+            <table class="table table-striped-columns">
+                   <tr>
+                       <td>Email</td><td>@Model.Email</td>
+                   </tr>
+                    <tr>
+                       <td>About</td><td>@Model.About</td>
+                   </tr>
+            </table>
+        </div>
+    </div>
+    
+}
+else
+{
+    <p>You do not have a page. Register to create it</p>
+}

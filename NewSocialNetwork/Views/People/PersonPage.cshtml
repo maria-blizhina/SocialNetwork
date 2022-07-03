@@ -1,0 +1,80 @@
+﻿@model NewSocialNetwork.Models.Person
+
+@{
+    ViewData["Title"] = "Person Page";
+}
+
+
+
+    <div class="left-menu-wrapper">
+        <ul class="left-menu list-group">
+            <li class="list-group-item">
+                <a asp-action="FriendsList">My friends</a>
+            </li>
+            <li class="list-group-item">
+                <a asp-controller="Messages" asp-action="IncomingMessages">Messages</a>
+            </li>
+        </ul>
+        <div class="left-menu-content">
+            <h2>@Model.Name</h2>
+            <table class="table table-striped-columns">
+                   <tr>
+                       <td>Email</td><td>@Model.Email</td>
+                   </tr>
+                    <tr>
+                       <td>About</td><td>@Model.About</td>
+                   </tr>
+            </table>
+            <div> 
+                @{
+                var personId = Model.ID;
+                }
+
+                @if (ViewBag.follower == null)
+                {
+                    <a asp-action="Follow" asp-route-id="@personId">Follow</a>
+                }
+                else
+                {
+                    <a asp-action="UnFollow" asp-route-id="@personId">UnFollow</a>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.About)
+        </dd>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+
+-->

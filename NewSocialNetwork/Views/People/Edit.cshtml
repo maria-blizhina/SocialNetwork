@@ -1,0 +1,53 @@
+﻿@model NewSocialNetwork.Models.Person
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+
+<hr />
+
+ <div class="left-menu-wrapper">
+        <ul class="left-menu list-group">
+            <li class="list-group-item">
+                <a asp-action="Edit" asp-route-id="@Model.ID">Edit my page</a>
+            </li>
+            <li class="list-group-item">
+                <a asp-action="FriendsList">My friends</a>
+            </li>
+            <li class="list-group-item">
+                 <a asp-controller="Messages" asp-action="IncomingMessages">Messages</a>
+            </li>
+        </ul>
+        <div class="left-menu-content">
+                    <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="About" class="control-label"></label>
+                <textarea asp-for="About" class="form-control" ></textarea>
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" readonly/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-1">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+        </div>
+    </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
