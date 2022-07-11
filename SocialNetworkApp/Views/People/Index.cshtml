@@ -1,0 +1,34 @@
+﻿@model SocialNetworkApp.Models.ViewModels.PeopleListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "People";
+}
+
+<h4>People</h4>
+
+
+<form class="d-flex" role="search" method="get">
+        <input asp-for="Search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+ </form>
+  
+<table class="table table-striped-columns">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+  
+    @foreach (var item in Model.People)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>
+                <a asp-action="PersonPage" asp-route-id="@item.ID">Page</a> 
+            </td>
+        </tr>
+    }
+</table>
+

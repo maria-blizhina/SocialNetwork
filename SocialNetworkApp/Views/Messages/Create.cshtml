@@ -1,0 +1,48 @@
+﻿@model SocialNetworkApp.Models.Message
+
+@{
+    ViewData["Title"] = "Write a message";
+}
+
+<div class="left-menu-wrapper">
+    <ul class="left-menu list-group">
+        <li class="list-group-item">
+            <a asp-action="IncomingMessages" >Incoming</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="OutgoingMessages">Outgoing</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Create">Write a message</a>
+        </li>
+    </ul>
+        <div class="left-menu-content">
+
+        <h4>Write a message</h4>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ReceiverId" class="control-label">Receiver</label>
+                        <select asp-for="ReceiverId" class="form-control form-select" asp-items="ViewBag.ReceiverId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Text" class="control-label"></label>
+                        <textarea asp-for="Text" class="form-control" ></textarea>
+                        <span asp-validation-for="Text" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-1">
+                        <input type="submit" value="Send message" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,44 @@
+﻿@model SocialNetworkApp.Models.Person
+
+@{
+    ViewData["Title"] = "Person Page";
+}
+
+    <div class="left-menu-wrapper">
+        <ul class="left-menu list-group">
+            <li class="list-group-item">
+                <a asp-action="FriendsList">My friends</a>
+            </li>
+            <li class="list-group-item">
+                <a asp-controller="Messages" asp-action="IncomingMessages">Messages</a>
+            </li>
+        </ul>
+        <div class="left-menu-content">
+            <h2>@Model.Name</h2>
+            <table class="table table-striped-columns">
+                   <tr>
+                       <td>Email</td><td>@Model.Email</td>
+                   </tr>
+                    <tr>
+                       <td>About</td><td>@Model.About</td>
+                   </tr>
+            </table>
+            <div> 
+                @{
+                var personId = Model.ID;
+                }
+
+                @if (ViewBag.AlreadyFollowed == false)
+                {
+                    <a asp-action="Follow" asp-route-id="@personId">Follow</a>
+                }
+                @if (ViewBag.AlreadyFollowed == true)
+                {
+                    <a asp-action="UnFollow" asp-route-id="@personId">Unfollow</a>
+                }
+                <br/>
+                <a asp-controller="Messages" asp-action="Create" asp-route-id="@personId">Write a message</a>
+            </div>
+        </div>
+    </div>
+
